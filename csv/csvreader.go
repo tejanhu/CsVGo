@@ -60,6 +60,11 @@ func checkError(msg string, err error) {
 	}
 }
 
+/*
+	Checks if Headers match
+	E.g: Filedata1 'Customer ID' and Filedata2 'Customer ID' match
+*/
+
 func main() {
 	filedata1, err := processFile1()
 
@@ -75,17 +80,23 @@ func main() {
 		return
 	}
 
-	/*
-		Checks if Headers match
-		E.g: Filedata1 'Customer ID' and Filedata2 'Customer ID' match
-	*/
+	var flag bool
 
 	if len(filedata1) == len(filedata2) {
 		for i := 0; i < len(filedata1); i++ {
+
 			if filedata1[i] == filedata2[i] {
-				fmt.Println("filedata1: ", filedata1[i], "\nfiledata2: ", filedata1[i])
-				fmt.Println("MATCH!")
+				fmt.Println("filedata1: ", filedata1[i], "\nfiledata2: ", filedata2[i])
+				flag = true
+				fmt.Println("MATCHES: ", flag)
+			} else {
+				fmt.Println("filedata1: ", filedata1[i], "\nfiledata2: ", filedata2[i])
+				flag = false
+				fmt.Println("MATCHES: ", flag)
 			}
+
 		}
+	} else {
+		fmt.Println("Filedata1 and Filedata2 are not equivalent in size!")
 	}
 }
